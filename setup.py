@@ -36,7 +36,7 @@ def read(*filenames, **kwargs):
     return sep.join(buf)
 
 
-long_description = read('README.rst', 'CHANGES.rst')
+long_description = read('README.rst')
 
 
 class PyTest(TestCommand):
@@ -60,7 +60,7 @@ class PyTest(TestCommand):
 setup(
         name='satcomum',
         version=satcomum.__version__,
-        description=u'Código comum à implementação do SAT-CF-e (SAT Fiscal).',
+        description=u'Código comum à implementação do SAT-CF-e.',
         long_description=long_description,
         packages=['satcomum'],
         install_requires=[],
@@ -71,7 +71,9 @@ setup(
                     ],
             },
         tests_require=['pytest'],
-        cmdclass={'test': PyTest},
+        cmdclass={
+                'test': PyTest,
+            },
         test_suite='satcomum.tests',
         include_package_data=True,
         license='Apache Software License',
