@@ -2,8 +2,9 @@ __pycache__/
 
 /build/
 /dist/
-/satcomum.egg-info/
+/*.egg-info/
 /*.egg/
+/*.eggs/
 
 *.pyc
 *.pyo
