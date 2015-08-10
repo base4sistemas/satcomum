@@ -2,7 +2,7 @@
 Código Comum ao SAT-CF-e
 ========================
 
-.. image:: https://img.shields.io/badge/status-planning-red.svg
+.. image:: https://img.shields.io/pypi/status/satcomum.svg
     :target: https://pypi.python.org/pypi/satcomum/
     :alt: Development status
 
