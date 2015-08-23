@@ -6,6 +6,10 @@ Código Comum ao SAT-CF-e
     :target: https://pypi.python.org/pypi/satcomum/
     :alt: Development status
 
+.. image:: https://drone.io/github.com/base4sistemas/satcomum/status.png
+    :target: https://pypi.python.org/pypi/satcomum/
+    :alt: Build status
+
 .. image:: https://img.shields.io/badge/python%20version-2.7-blue.svg
     :target: https://pypi.python.org/pypi/satcomum/
     :alt: Supported Python versions
