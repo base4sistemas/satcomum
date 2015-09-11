@@ -6,19 +6,15 @@ Código Comum ao SAT-CF-e
     :target: https://pypi.python.org/pypi/satcomum/
     :alt: Development status
 
-.. image:: https://drone.io/github.com/base4sistemas/satcomum/status.png
-    :target: https://pypi.python.org/pypi/satcomum/
-    :alt: Build status
-
 .. image:: https://img.shields.io/badge/python%20version-2.7-blue.svg
     :target: https://pypi.python.org/pypi/satcomum/
     :alt: Supported Python versions
 
-.. image:: https://img.shields.io/pypi/l/satextrato.svg
+.. image:: https://img.shields.io/pypi/l/satcomum.svg
     :target: https://pypi.python.org/pypi/satcomum/
     :alt: License
 
-.. image:: https://img.shields.io/pypi/v/satextrato.svg
+.. image:: https://img.shields.io/pypi/v/satcomum.svg
     :target: https://pypi.python.org/pypi/satcomum/
     :alt: Latest version
 
@@ -32,6 +28,14 @@ Código Comum ao SAT-CF-e
 
     Refer to the `oficial web site <http://www.fazenda.sp.gov.br/sat/>`_ for
     more information (in brazilian portuguese only).
+
+-------
+
+.. image:: https://drone.io/github.com/base4sistemas/satcomum/status.png
+    :target: https://drone.io/github.com/base4sistemas/satcomum/latest
+    :alt: Build status
+
+-------
 
 Este projeto mantém o código comum aos projetos relacionados ao `SAT-CF-e`_,
 tais como validadores, formatadores, constantes e utilitários que são usados
