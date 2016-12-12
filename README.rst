@@ -18,6 +18,10 @@ Código Comum ao SAT-CF-e
     :target: https://pypi.python.org/pypi/satcomum/
     :alt: Latest version
 
+.. image:: https://badges.gitter.im/Join%20Chat.svg
+   :alt: Join the chat at https://gitter.im/base4sistemas/satcfe
+   :target: https://gitter.im/base4sistemas/satcfe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
 -------
 
     This project holds the common code for projects related to `SAT-CF-e`_
@@ -45,9 +49,6 @@ nos projetos relacionados:
 * Impressão dos extratos do CF-e-SAT, `Projeto SATExtrato`_
 * Compartilhamento de Equipamentos SAT via RESTful API, `Projeto SATHub`_
 
-.. image:: https://badges.gitter.im/Join%20Chat.svg
-   :alt: Join the chat at https://gitter.im/base4sistemas/satcfe
-   :target: https://gitter.im/base4sistemas/satcfe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
 .. _`SAT-CF-e`: http://www.fazenda.sp.gov.br/sat/
 .. _`Projeto SATCFe`: https://github.com/base4sistemas/satcfe
