@@ -52,7 +52,7 @@ class PyTest(TestCommand):
         self.test_suite = True
 
     def run_tests(self):
-        import pytest # import here, cause outside the eggs aren't loaded
+        import pytest  # import here, cause outside the eggs aren't loaded
         errno = pytest.main(self.pytest_args)
         sys.exit(errno)
 
@@ -70,7 +70,7 @@ setup(
                         'pytest-cov'
                     ],
             },
-        tests_require=['pytest'],
+        tests_require=['pytest>4,<5'],
         cmdclass={
                 'test': PyTest,
             },
@@ -78,10 +78,10 @@ setup(
         include_package_data=True,
         license='Apache Software License',
         platforms='any',
-        url='http://github.com/base4sistemas/satcomum/',
+        url='https://github.com/base4sistemas/satcomum',
         author=u'Daniel Gonçalves',
         author_email='daniel@base4.com.br',
-        classifiers = [
+        classifiers=[
                 'Development Status :: 5 - Production/Stable',
                 'Environment :: Other Environment',
                 'Intended Audience :: Developers',
@@ -90,6 +90,8 @@ setup(
                 'Natural Language :: Portuguese (Brazilian)',
                 'Operating System :: OS Independent',
                 'Programming Language :: Python',
+                'Programming Language :: Python :: 2.7',
+                'Programming Language :: Python :: 3.6',
                 'Topic :: Office/Business :: Financial :: Point-Of-Sale',
                 'Topic :: Software Development :: Libraries :: Python Modules',
                 'Topic :: Utilities',

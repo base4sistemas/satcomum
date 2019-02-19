@@ -1,13 +1,16 @@
 __pycache__/
-
-.tox/
+.cache/
 .pytest_cache/
+.tox/
 
 /build/
 /dist/
-/*.egg-info/
+/satcomum.egg-info/
 /*.egg/
 /*.eggs/
+/docs/_build/
+
+.coverage
 
 *.pyc
 *.pyo
