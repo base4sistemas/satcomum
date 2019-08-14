@@ -62,6 +62,7 @@ setup(
         version=satcomum.__version__,
         description=u'Código comum à implementação do SAT-CF-e.',
         long_description=long_description,
+        long_description_content_type='text/x-rst',
         packages=['satcomum'],
         install_requires=[],
         extras_require={

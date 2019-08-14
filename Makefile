@@ -22,18 +22,20 @@ main:
 	@echo "Makefile do projeto SATComum para Python"
 
 clean:
-	@find . -type d -name '__pycache__' -exec rm -rv {} +
-	@find . -type d -name '.cache' -exec rm -rv {} +
-	@find . -type d -name '.pytest_cache' -exec rm -rv {} +
-	@find . -type d -name 'satcomum.egg-info' -exec rm -rv {} +
-	@find . -name '*.pyc' -delete -print
+	find . -type d -name '__pycache__' -exec rm -rv {} +
+	find . -type d -name '.cache' -exec rm -rv {} +
+	find . -type d -name '.pytest_cache' -exec rm -rv {} +
+	find . -type d -name 'satcomum.egg-info' -exec rm -rv {} +
+	find . -name '*.pyc' -delete -print
 
 fullclean: clean
-	@find . -type d -path './docs/_build' -exec rm -rv {} +
-	@find . -type d -path './.eggs' -exec rm -rv {} +
+	find . -type d -path './dist' -exec rm -rv {} +
+	find . -type d -path './build' -exec rm -rv {} +
+	find . -type d -path './docs/_build' -exec rm -rv {} +
+	find . -type d -path './.eggs' -exec rm -rv {} +
 
 test: clean
-	@pipenv run python setup.py test
+	pipenv run python setup.py test
 
 docs: clean
 	cd docs && pipenv run make html
