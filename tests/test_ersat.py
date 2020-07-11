@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# satcomum/tests/test_ersat.py
+# tests/test_ersat.py
 #
 # Copyright 2015 Base4 Sistemas Ltda ME
 #
@@ -16,10 +16,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import absolute_import
+from __future__ import unicode_literals
 
 import collections
 import io
 import xml.etree.ElementTree as ET
+
+from builtins import str as text
 
 import pytest
 
@@ -33,20 +37,33 @@ _QRCODE_CPFCNPJVALUE = 3
 _QRCODE_ASSINATURAQRCODE = 4
 
 
-AtributosQRCode = collections.namedtuple('AtributosQRCode',
-        'chaveconsulta timestamp valortotal cpfcnpjvalue assinaturaqrcode')
+AtributosQRCode = collections.namedtuple('AtributosQRCode', [
+        'chaveconsulta',
+        'timestamp',
+        'valortotal',
+        'cpfcnpjvalue',
+        'assinaturaqrcode',
+    ])
 
 
 def _atributos_qrcode(tree):
     infCFe = tree.getroot().find('./infCFe')
-    cpfcnpjvalue = infCFe.findtext('dest/CPF') or \
-            infCFe.findtext('dest/CNPJ') or ''
-    return AtributosQRCode(
+    cpfcnpjvalue = (
+            infCFe.findtext('dest/CPF')
+            or infCFe.findtext('dest/CNPJ')
+            or ''
+        )
+    atributos = AtributosQRCode(
             chaveconsulta=infCFe.attrib['Id'][3:],
-            timestamp=infCFe.findtext('ide/dEmi') + infCFe.findtext('ide/hEmi'),
+            timestamp='{}{}'.format(
+                    infCFe.findtext('ide/dEmi'),
+                    infCFe.findtext('ide/hEmi')
+                ),
             valortotal=infCFe.findtext('total/vCFe'),
             cpfcnpjvalue=cpfcnpjvalue,
-            assinaturaqrcode=infCFe.findtext('ide/assinaturaQRCODE'))
+            assinaturaqrcode=infCFe.findtext('ide/assinaturaQRCODE')
+        )
+    return atributos
 
 
 def _assert_dados_qrcode(tree):
@@ -63,13 +80,17 @@ def _assert_dados_qrcode(tree):
     assert campos[_QRCODE_ASSINATURAQRCODE] == atributos.assinaturaqrcode
 
 
-def test_qrcode_venda(xml_venda):
-    tree = ET.parse(io.StringIO(xml_venda))
+def test_qrcode_venda(datadir):
+    cfe_venda = text(datadir.join('data', 'cfe_venda.xml'))
+    with io.open(cfe_venda, 'r') as f:
+        tree = ET.parse(f)
     _assert_dados_qrcode(tree)
 
 
-def test_qrcode_cancelamento(xml_cancelamento):
-    tree = ET.parse(io.StringIO(xml_cancelamento))
+def test_qrcode_cancelamento(datadir):
+    cfe_canc = text(datadir.join('data', 'cfe_cancelamento.xml'))
+    with io.open(cfe_canc, 'r') as f:
+        tree = ET.parse(f)
     _assert_dados_qrcode(tree)
 
 
@@ -78,7 +99,9 @@ def test_meio_pagamento():
 
 
 def test_chave_cfesat():
-    chave = ersat.ChaveCFeSAT('CFe35150808723218000186599000040190000241114257')
+    chave = ersat.ChaveCFeSAT(
+            'CFe35150808723218000186599000040190000241114257'
+        )
     assert chave.codigo_uf == 35
     assert chave.uf == 'SP'
     assert chave.mes_emissao == 8
@@ -94,18 +117,29 @@ def test_chave_cfesat():
 
 def test_chave_cfesat_2012_11():
     # chave com mês/ano no mês da Portaria CAT-147, introduzida em 11/2012
-    chave = ersat.ChaveCFeSAT('CFe35121108723218000186599000040190000241114259')
+    chave = ersat.ChaveCFeSAT(
+            'CFe35121108723218000186599000040190000241114259'
+        )
     assert chave.mes_emissao == 11
     assert chave.ano_emissao == 2012
 
 
 def test_chave_cfesat_invalidas():
     invalidas = (
-            'CFe72150808723218000186599000040190000241114250', # código UF 72 invalido
-            'CFe35121008723218000186599000040190000241114255', # mês/ano inválidos (Portaria CAT-147 introduzida em 11/2012)
-            'CFe35111208723218000186599000040190000241114250', # mês/ano inválidos (Portaria CAT-147 introduzida em 11/2012)
-            'CFe35151308723218000186599000040190000241114251', # mês/ano inválido (mês fora da faixa)
-            'CFe35150808723218000187599000040190000241114259', # número do CNPJ emitente inválido
+            # código UF 72 invalido
+            'CFe72150808723218000186599000040190000241114250',
+
+            # mês/ano inválidos (Portaria CAT-147 introduzida em 11/2012)
+            'CFe35121008723218000186599000040190000241114255',
+
+            # mês/ano inválidos (Portaria CAT-147 introduzida em 11/2012)
+            'CFe35111208723218000186599000040190000241114250',
+
+            # mês/ano inválido (mês fora da faixa)
+            'CFe35151308723218000186599000040190000241114251',
+
+            # número do CNPJ emitente inválido
+            'CFe35150808723218000187599000040190000241114259',
         )
 
     for chave in invalidas:
@@ -114,10 +148,11 @@ def test_chave_cfesat_invalidas():
 
 
 def test_chave_cfesat_partes():
-    chave = ersat.ChaveCFeSAT('CFe35150461099008000141599000017900000053222424')
-    assert chave.partes(2) == ['3515046109900800014159', '9000017900000053222424']
+    chave = ersat.ChaveCFeSAT(
+            'CFe35150461099008000141599000017900000053222424'
+        )
+    # verifica o padrão, dividindo em 11 partes
     assert chave.partes() == [
-            # padrão, dividindo em 11 partes
             '3515',
             '0461',
             '0990',
@@ -128,7 +163,12 @@ def test_chave_cfesat_partes():
             '7900',
             '0000',
             '5322',
-            '2424',]
+            '2424',
+        ]
+    assert chave.partes(2) == [
+            '3515046109900800014159',
+            '9000017900000053222424',
+        ]
 
     with pytest.raises(AssertionError):
-        chave.partes(3) # o número de partes deve ser divisível por 44
+        chave.partes(3)  # o número de partes deve ser divisível por 44

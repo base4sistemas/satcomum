@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# satcomum/__init__.py
+# tests/conftest.py
 #
 # Copyright 2015 Base4 Sistemas Ltda ME
 #
@@ -19,4 +19,17 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
-__version__ = '2.0'
+import os
+import shutil
+
+from builtins import str as text
+
+import pytest
+
+
+@pytest.fixture(scope='function')
+def datadir(tmpdir, request):
+    path, _ = os.path.split(request.module.__file__)
+    dirname = os.path.join(path, 'data')
+    shutil.copytree(dirname, text(tmpdir.join('data')))
+    return tmpdir

@@ -1,4 +1,9 @@
 include LICENSE
 include README.rst
+graft requirements
 graft docs
+graft tests
+prune *.egg-info
 prune docs/_build
+prune __pycache__
+global-exclude *.py[cod]

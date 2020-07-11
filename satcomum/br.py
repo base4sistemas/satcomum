@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import absolute_import
+from __future__ import unicode_literals
 
 from .util import digitos
 
@@ -40,11 +42,11 @@ class UnidadeFederativaError(ValueError):
     pass
 
 
-REGIAO_NORTE = u'Norte'
-REGIAO_NORDESTE = u'Nordeste'
-REGIAO_CENTRO_OESTE = u'Centro Oeste'
-REGIAO_SUDESTE = u'Sudeste'
-REGIAO_SUL = u'Sul'
+REGIAO_NORTE = 'Norte'
+REGIAO_NORDESTE = 'Nordeste'
+REGIAO_CENTRO_OESTE = 'Centro Oeste'
+REGIAO_SUDESTE = 'Sudeste'
+REGIAO_SUL = 'Sul'
 
 _UF_SIGLA = 0
 _UF_CODIGO_IBGE = 1
@@ -53,33 +55,33 @@ _UF_REGIAO = 3
 
 UNIDADES_FEDERACAO = (
         # sigla, código IBGE, nome, região
-        ('AC', 12, u'Acre', REGIAO_NORTE),
-        ('AL', 27, u'Alagoas', REGIAO_NORDESTE),
-        ('AM', 13, u'Amazonas', REGIAO_NORTE),
-        ('AP', 16, u'Amapá', REGIAO_NORTE),
-        ('BA', 29, u'Bahia', REGIAO_NORDESTE),
-        ('CE', 23, u'Ceará', REGIAO_NORDESTE),
-        ('DF', 53, u'Distrito Federal', REGIAO_CENTRO_OESTE),
-        ('ES', 32, u'Espírito Santo', REGIAO_SUDESTE),
-        ('GO', 52, u'Goiás', REGIAO_CENTRO_OESTE),
-        ('MA', 21, u'Maranhão', REGIAO_NORDESTE),
-        ('MG', 31, u'Minas Gerais', REGIAO_SUDESTE),
-        ('MS', 50, u'Mato Grosso do Sul', REGIAO_CENTRO_OESTE),
-        ('MT', 51, u'Mato Grosso', REGIAO_CENTRO_OESTE),
-        ('PA', 15, u'Pará', REGIAO_NORTE),
-        ('PB', 25, u'Paraíba', REGIAO_NORDESTE),
-        ('PE', 26, u'Pernambuco', REGIAO_NORDESTE),
-        ('PI', 22, u'Piauí', REGIAO_NORDESTE),
-        ('PR', 41, u'Paraná', REGIAO_SUL),
-        ('RJ', 33, u'Rio de Janeiro', REGIAO_SUDESTE),
-        ('RN', 24, u'Rio Grande de Norte', REGIAO_NORDESTE),
-        ('RO', 11, u'Rondônia', REGIAO_NORTE),
-        ('RR', 14, u'Roraima', REGIAO_NORTE),
-        ('RS', 43, u'Rio Grande do Sul', REGIAO_SUL),
-        ('SC', 42, u'Santa Catarina', REGIAO_SUL),
-        ('SE', 28, u'Sergipe', REGIAO_NORDESTE),
-        ('SP', 35, u'São Paulo', REGIAO_SUDESTE),
-        ('TO', 17, u'Tocantins', REGIAO_NORTE),)
+        ('AC', 12, 'Acre', REGIAO_NORTE),
+        ('AL', 27, 'Alagoas', REGIAO_NORDESTE),
+        ('AM', 13, 'Amazonas', REGIAO_NORTE),
+        ('AP', 16, 'Amapá', REGIAO_NORTE),
+        ('BA', 29, 'Bahia', REGIAO_NORDESTE),
+        ('CE', 23, 'Ceará', REGIAO_NORDESTE),
+        ('DF', 53, 'Distrito Federal', REGIAO_CENTRO_OESTE),
+        ('ES', 32, 'Espírito Santo', REGIAO_SUDESTE),
+        ('GO', 52, 'Goiás', REGIAO_CENTRO_OESTE),
+        ('MA', 21, 'Maranhão', REGIAO_NORDESTE),
+        ('MG', 31, 'Minas Gerais', REGIAO_SUDESTE),
+        ('MS', 50, 'Mato Grosso do Sul', REGIAO_CENTRO_OESTE),
+        ('MT', 51, 'Mato Grosso', REGIAO_CENTRO_OESTE),
+        ('PA', 15, 'Pará', REGIAO_NORTE),
+        ('PB', 25, 'Paraíba', REGIAO_NORDESTE),
+        ('PE', 26, 'Pernambuco', REGIAO_NORDESTE),
+        ('PI', 22, 'Piauí', REGIAO_NORDESTE),
+        ('PR', 41, 'Paraná', REGIAO_SUL),
+        ('RJ', 33, 'Rio de Janeiro', REGIAO_SUDESTE),
+        ('RN', 24, 'Rio Grande de Norte', REGIAO_NORDESTE),
+        ('RO', 11, 'Rondônia', REGIAO_NORTE),
+        ('RR', 14, 'Roraima', REGIAO_NORTE),
+        ('RS', 43, 'Rio Grande do Sul', REGIAO_SUL),
+        ('SC', 42, 'Santa Catarina', REGIAO_SUL),
+        ('SE', 28, 'Sergipe', REGIAO_NORDESTE),
+        ('SP', 35, 'São Paulo', REGIAO_SUDESTE),
+        ('TO', 17, 'Tocantins', REGIAO_NORTE),)
 
 
 def uf(sigla):

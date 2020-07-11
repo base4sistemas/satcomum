@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import absolute_import
+from __future__ import unicode_literals
 
 """Este módulo fornece implementações para algumas características descritas na
 ER SAT (*Especificação de Requisitos*) que não estão cobertas diretamente neste
@@ -24,6 +26,7 @@ projeto nem nos projetos relacionados com o SAT-CF-e.
 
 import re
 
+from future.utils import python_2_unicode_compatible
 from six.moves import range
 
 from . import br
@@ -84,6 +87,7 @@ def dados_qrcode(cfe):
         ])
 
 
+@python_2_unicode_compatible
 class ChaveCFeSAT(object):
     """Representa a **chave de acesso** do CF-e-SAT conforme descrito na
     Especificação de Requisitos SAT, item 4.7. Os campos são definidos assim:
@@ -175,13 +179,10 @@ class ChaveCFeSAT(object):
         self._campos = campos
 
     def __repr__(self):
-        return '{:s}({!r})'.format(self.__class__.__name__, str(self))
-
-    def __unicode__(self):
-        return self._chave
+        return '{:s}({!r})'.format(self.__class__.__name__, self._chave)
 
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return self.chave
 
     @property
     def codigo_uf(self):

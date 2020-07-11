@@ -15,28 +15,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Travis-CI References
-# https://docs.travis-ci.com/user/languages/python/
-# https://docs.travis-ci.com/user/reference/trusty/
-#
 
 language: python
+dist: bionic
 
-matrix:
-  include:
-    - name: "Python 2.7 on Trusty"
-      python: 2.7
-      dist: trusty
-    - name: "Python 3.6 on Trusty"
-      python: 3.6
-      dist: trusty
-    - name: "Python 3.7 on Bionic"
-      python: 3.7
-      dist: bionic
+python:
+  - "2.7"
+  - "3.6"
+  - "3.7"
+  - "3.8"
 
 install:
-  - pip install --upgrade pip
-  - pip install pipenv
+  - pip install -r requirements/dev.txt
 
 script:
-  - make test
+  - pytest

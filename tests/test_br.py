@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# satcomum/tests/test_ersat.py
+# tests/test_ersat.py
 #
 # Copyright 2015 Base4 Sistemas Ltda ME
 #
@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import absolute_import
+from __future__ import unicode_literals
 
 import string
 
@@ -25,7 +27,7 @@ from satcomum import br
 
 
 def test_uf():
-    assert br.uf('SP') is None # UF OK
+    assert br.uf('SP') is None  # UF OK
     with pytest.raises(br.UnidadeFederativaError):
         br.uf('sp')
 
@@ -37,7 +39,7 @@ def test_is_uf():
 
 
 def test_is_codigo_uf():
-    assert br.is_codigo_uf(35) # 35 código de SP
+    assert br.is_codigo_uf(35)  # 35 código de SP
     assert not br.is_codigo_uf(0)
 
 
@@ -49,16 +51,16 @@ def test_uf_pelo_codigo():
 
 def test_codigo_ibge_uf():
     assert br.codigo_ibge_uf('SP') == 35
-    for uf in ('sp', '',): # lista de UF inválidas
+    for uf in ('sp', '',):  # lista de UF inválidas
         with pytest.raises(ValueError):
             br.codigo_ibge_uf(uf)
 
 
 def test_cnpj():
     invalidos = (
-            '123', # número CNPJ deve possuir 14 dígitos
-            '08427847000179', # primeiro dígito DV errado
-            '08427847000168', # segundo dígito DV errado
+            '123',  # número CNPJ deve possuir 14 dígitos
+            '08427847000179',  # primeiro dígito DV errado
+            '08427847000168',  # segundo dígito DV errado
         )
     for numero in invalidos:
         with pytest.raises(br.NumeroCNPJError):
@@ -75,23 +77,32 @@ def test_cnpj():
 
 def test_is_cnpj():
     assert not br.is_cnpj('')
-    assert br.is_cnpj('08.427.847/0001-69') # com mas máscara, não estrito, OK
-    assert not br.is_cnpj('08.427.847/0001-69', estrito=True) # com máscara, estrito, deve falhar
+
+    # com mas máscara, não estrito, OK
+    assert br.is_cnpj('08.427.847/0001-69')
+
+    # com máscara, estrito, deve falhar
+    assert not br.is_cnpj('08.427.847/0001-69', estrito=True)
 
 
 def test_as_cnpj():
+    # número CNPJ válido, com ou sem máscara
     assert br.as_cnpj('08427847000169') == '08.427.847/0001-69'
-    assert br.as_cnpj('08427847000168') == '08427847000168' # segundo dígito DV inválido
-    assert br.as_cnpj('08.427.847/0001-69') == '08.427.847/0001-69' # número CNPJ original válido, já mascarado, é OK
-    assert br.as_cnpj('') == '' # número inválido devolve o que recebeu intocado
+    assert br.as_cnpj('08.427.847/0001-69') == '08.427.847/0001-69'
+
+    # segundo dígito DV inválido
+    assert br.as_cnpj('08427847000168') == '08427847000168'
+
+    # número inválido devolve o que recebeu intocado
+    assert br.as_cnpj('') == ''
     assert br.as_cnpj('000') == '000'
 
 
 def test_cpf():
     invalidos = (
-            '123', # número CPF deve possuir 11 dígitos
-            '11122233386', # primeiro dígito DV errado
-            '11122233395', # segundo dígito DV errado
+            '123',  # número CPF deve possuir 11 dígitos
+            '11122233386',  # primeiro dígito DV errado
+            '11122233395',  # segundo dígito DV errado
         )
     for numero in invalidos:
         with pytest.raises(br.NumeroCPFError):
@@ -108,14 +119,21 @@ def test_cpf():
 
 def test_is_cpf():
     assert not br.is_cpf('')
-    assert br.is_cpf('111.222.333-96') # com máscara, não estrito, OK
-    assert not br.is_cpf('111.222.333-96', estrito=True) # com máscara, estrito, deve falhar
+
+    # com máscara, não estrito, OK
+    assert br.is_cpf('111.222.333-96')
+
+    # com máscara, estrito, deve falhar
+    assert not br.is_cpf('111.222.333-96', estrito=True)
 
 
 def test_as_cpf():
+    # número CPF válido, com ou sem máscara
     assert br.as_cpf('11122233396') == '111.222.333-96'
     assert br.as_cpf('111.222.333-96') == '111.222.333-96'
-    assert br.as_cpf('') == '' # número inválido devolve o que recebeu intocado
+
+    # número inválido devolve o que recebeu intocado
+    assert br.as_cpf('') == ''
     assert br.as_cpf('000') == '000'
 
 
@@ -123,7 +141,7 @@ def test_cnpjcpf():
     assert br.cnpjcpf('08427847000169') is None
     assert br.cnpjcpf('11122233396') is None
     with pytest.raises(br.NumeroCNPJCPFError):
-        br.cnpjcpf('08427847000168') # não é um CNPJ ou CPF válido
+        br.cnpjcpf('08427847000168')  # não é um CNPJ ou CPF válido
 
 
 def test_is_cnpjcpf():
@@ -144,15 +162,16 @@ def test_as_cnpjcpf():
 
 
 def test_cep():
-    assert br.cep('15807250') is None # OK, este existe mesmo, é válido
-    assert br.cep('12345678') is None # OK, considera válido
+    assert br.cep('15807250') is None  # OK, este existe mesmo, é válido
+    assert br.cep('12345678') is None  # OK, considera válido
 
     with pytest.raises(br.NumeroCEPError):
-        br.cep('123456') # CEP "123456" não possui 8 dígitos
+        br.cep('123456')  # CEP "123456" não possui 8 dígitos
 
     for digito in string.digits:
         with pytest.raises(br.NumeroCEPError):
-            br.cep(digito * 8) # 8 digitos mas todos iguais, considera inválido
+            # 8 digitos mas todos iguais, considera inválido
+            br.cep(digito * 8)
 
 
 def test_is_cep():

@@ -16,14 +16,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import absolute_import
+from __future__ import unicode_literals
 
 import io
-import sys
+import os
+import re
 
 from setuptools import setup
-from setuptools.command.test import test as TestCommand
-
-import satcomum
 
 
 def read(*filenames, **kwargs):
@@ -36,51 +36,32 @@ def read(*filenames, **kwargs):
     return sep.join(buf)
 
 
+def read_version():
+    content = read(os.path.join('satcomum', '__init__.py'))
+    return re.search(r"__version__ = '([^']+)'", content).group(1)
+
+
 long_description = read('README.rst')
-
-
-class PyTest(TestCommand):
-    user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
-
-    def initialize_options(self):
-        TestCommand.initialize_options(self)
-        self.pytest_args = []
-
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        import pytest  # import here, cause outside the eggs aren't loaded
-        errno = pytest.main(self.pytest_args)
-        sys.exit(errno)
 
 
 setup(
         name='satcomum',
-        version=satcomum.__version__,
-        description=u'Código comum à implementação do SAT-CF-e.',
+        version=read_version(),
+        description='Código comum à implementação do SAT-CF-e.',
         long_description=long_description,
         long_description_content_type='text/x-rst',
-        packages=['satcomum'],
-        install_requires=[],
-        extras_require={
-                'testing': [
-                        'pytest',
-                        'pytest-cov'
-                    ],
-            },
-        tests_require=['pytest>4,<5'],
-        cmdclass={
-                'test': PyTest,
-            },
-        test_suite='satcomum.tests',
+        packages=[
+                'satcomum',
+            ],
+        install_requires=[
+                'future',
+                'six',
+            ],
         include_package_data=True,
         license='Apache Software License',
         platforms='any',
         url='https://github.com/base4sistemas/satcomum',
-        author=u'Daniel Gonçalves',
+        author='Daniel Gonçalves',
         author_email='daniel@base4.com.br',
         classifiers=[
                 'Development Status :: 5 - Production/Stable',
@@ -93,6 +74,8 @@ setup(
                 'Programming Language :: Python',
                 'Programming Language :: Python :: 2.7',
                 'Programming Language :: Python :: 3.6',
+                'Programming Language :: Python :: 3.7',
+                'Programming Language :: Python :: 3.8',
                 'Topic :: Office/Business :: Financial :: Point-Of-Sale',
                 'Topic :: Software Development :: Libraries :: Python Modules',
                 'Topic :: Utilities',

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# satcomum/test/test_util.py
+# tests/test_util.py
 #
 # Copyright 2015 Base4 Sistemas Ltda ME
 #
@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from __future__ import absolute_import
+from __future__ import unicode_literals
 
 from decimal import Decimal
 
@@ -39,9 +41,9 @@ def test_texto_decimal():
 
 
 def test_modulo_11():
-    assert util.modulo11('0') == 0 # digito resultante: 11
-    assert util.modulo11('6') == 0 # digito resultante: 10
-    assert util.modulo11('1') == 9 # digito resultante: 9
+    assert util.modulo11('0') == 0  # digito resultante: 11
+    assert util.modulo11('6') == 0  # digito resultante: 10
+    assert util.modulo11('1') == 9  # digito resultante: 9
 
     # chaves de CF-e-SAT emitidos em ambiente de testes
     # CFe35150808723218000186599000040190000241114257

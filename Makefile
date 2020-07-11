@@ -35,7 +35,7 @@ fullclean: clean
 	find . -type d -path './.eggs' -exec rm -rv {} +
 
 test: clean
-	pipenv run python setup.py test
+	pytest
 
 docs: clean
-	cd docs && pipenv run make html
+	cd docs && $(MAKE) html

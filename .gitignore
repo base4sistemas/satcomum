@@ -1,18 +1,20 @@
 __pycache__/
 .cache/
-.pytest_cache/
 .tox/
+.idea/
+.env/
+.env_satcomum/
+.pytest_cache/
 
 /build/
 /dist/
-/satcomum.egg-info/
-/*.egg/
+/*.egg-info/
 /*.eggs/
 /docs/_build/
-
-.coverage
 
 *.pyc
 *.pyo
 *.pyd
+*.egg
+
 *.sublime-workspace
