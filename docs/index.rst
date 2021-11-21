@@ -54,7 +54,7 @@ puder contribuir com código, excelente! Faça um clone do repositório,
 modifique o que acha que deve e faça o *pull-request*. Teremos
 `prazer <https://www.python.org/dev/peps/pep-0008/>`_ em
 `aceitar <http://docs.python-guide.org/en/latest/writing/style/>`_ o seu
-`código <http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html>`_.
+`código <https://intermediate-and-advanced-software-carpentry.readthedocs.io>`_.
 
 Se você não quer (ou não pode) programar, também pode contribuir com
 documentação. Ou ainda, se você vir algo errado ou achar que algo não está
