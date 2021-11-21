@@ -21,7 +21,7 @@ from __future__ import unicode_literals
 
 # flake8: noqa
 
-VERSAO_ER = '2.21.08'
+VERSAO_ER = '2.28.05'
 """Versão da Especificação de Requisitos (ER) do SAT-CF-e na qual esta
 implementação se baseia.
 """
@@ -335,6 +335,12 @@ WA03_VALE_ALIMENTACAO = '10'
 WA03_VALE_REFEICAO = '11'
 WA03_VALE_PRESENTE = '12'
 WA03_VALE_COMBUSTIVEL = '13'
+WA03_BOLETO_BANCARIO = '15'
+WA03_DEPOSITO_BANCARIO = '16'
+WA03_PIX = '17'
+WA03_CARTEIRA_DIGITAL = '18'
+WA03_CASHBACK_CREDITO_VIRTUAL = '19'
+WA03_SEM_PAGAMENTO = '90'
 WA03_OUTROS = '99'
 
 WA03_CMP_MP = (
@@ -347,6 +353,12 @@ WA03_CMP_MP = (
         (WA03_VALE_REFEICAO, 'Vale Refeição'),
         (WA03_VALE_PRESENTE, 'Vale Presente'),
         (WA03_VALE_COMBUSTIVEL, 'Vale Combustível'),
+        (WA03_BOLETO_BANCARIO, 'Boleto Bancário'),
+        (WA03_DEPOSITO_BANCARIO, 'Depósito Bancário'),
+        (WA03_PIX, 'Pix'),
+        (WA03_CARTEIRA_DIGITAL, 'Carteira Digital'),
+        (WA03_CASHBACK_CREDITO_VIRTUAL, 'Cashback'),
+        (WA03_SEM_PAGAMENTO, 'Sem Pagamento'),
         (WA03_OUTROS, 'Outros'),
     )
 

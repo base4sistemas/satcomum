@@ -96,6 +96,9 @@ def test_qrcode_cancelamento(datadir):
 
 def test_meio_pagamento():
     assert ersat.meio_pagamento('01') == 'Dinheiro'
+    assert ersat.meio_pagamento('17') == 'Pix'  # incluído na ER 2.28.05
+    with pytest.raises(ValueError):
+        ersat.meio_pagamento('?')
 
 
 def test_chave_cfesat():

@@ -42,7 +42,13 @@ def meio_pagamento(codigo):
     :rtype: unicode
 
     """
-    return [s for v, s in constantes.WA03_CMP_MP if v == codigo][0]
+    elemento = [s for v, s in constantes.WA03_CMP_MP if v == codigo]
+    if not elemento:
+        raise ValueError(
+                'codigo de meio de pagamento '
+                'desconhecido: {!r}'.format(codigo)
+            )
+    return elemento[0]
 
 
 def dados_qrcode(cfe):
