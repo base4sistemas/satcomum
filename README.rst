@@ -54,7 +54,7 @@ Configure o ambiente de desenvolvimento e execute os testes:
 
 .. sourcecode:: shell
 
-    $ git clone https://github.com/danielgoncalves/satcomum.git
+    $ git clone https://github.com/base4sistemas/satcomum.git
     $ cd satcomum
     $ python -m venv .env
     $ source .env/bin/activate
