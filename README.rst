@@ -3,7 +3,7 @@
     :target: https://pypi.python.org/pypi/satcomum/
     :alt: Latest version
 
-.. image:: https://img.shields.io/badge/python%20version-2.7-blue.svg
+.. image:: https://img.shields.io/pypi/pyversions/satcomum.svg
     :target: https://pypi.python.org/pypi/satcomum/
     :alt: Supported Python versions
 
