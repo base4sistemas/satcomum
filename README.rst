@@ -37,6 +37,7 @@ Código Comum ao SAT-CF-e
     Head over to `SAT-CF-e`_ official website for more information (in
     brazilian portuguese only).
 
+**A SEFAZ/SP decidiu por descontinuar o projeto SAT-CF-e.** Para detalhes acesse a `Portaria SRE nº 79 <https://legislacao.fazenda.sp.gov.br/Paginas/Portaria-SRE-79-de-2024.aspx>`_.
 
 Este projeto mantém o código comum aos projetos relacionados ao `SAT-CF-e`_,
 tais como validadores, formatadores, constantes e utilitários que são usados
